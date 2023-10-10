@@ -1,1 +1,17 @@
-
+# Setting the source and replica folder paths:
+$sourceFolder = "C:\Path\To\Source\Folder"
+$replicaFolder = "C:\Path\To\Replica\Folder"
+# Get a list of files and subdirectories in the source folder
+$sourceItems = Get-ChildItem -Path $sourceFolder -File -Directory -Recurse
+# Loop through each item in the source folder:
+foreach ($item in $sourceItems){
+$replicaPath = Join-Path -Path
+$replicaFolder -ChildPath }
+$item.FullName.Substring($sourceFolder.Length)
+#If it's a file, copy it to the replica folder:
+if ($item.PSIsContainer -eq $false) {
+Copy-Item -Path $item.FullName -Destination $replicaPath -Force}
+#If it's a directory, create it in the replica folder: 
+else { 
+New-Item -ItemType Directory -Path $replicaPath -Force }
+Write-Host "Sync complete."
