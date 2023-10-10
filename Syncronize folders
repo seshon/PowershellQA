@@ -6,7 +6,7 @@ $sourceItems = Get-ChildItem -Path $sourceFolder -File -Directory -Recurse
 # Loop through each item in the source folder:
 foreach ($item in $sourceItems){
 $replicaPath = Join-Path -Path
-$replicaFolder -ChildPath }
+$replicaFolder -ChildPath 
 $item.FullName.Substring($sourceFolder.Length)
 #If it's a file, copy it to the replica folder:
 if ($item.PSIsContainer -eq $false) {
@@ -14,4 +14,5 @@ Copy-Item -Path $item.FullName -Destination $replicaPath -Force}
 #If it's a directory, create it in the replica folder: 
 else { 
 New-Item -ItemType Directory -Path $replicaPath -Force }
+}
 Write-Host "Sync complete."
